@@ -41,10 +41,9 @@ public class Aquarium extends GFX {
 		super(WIDTH, HEIGHT);
 	}
 	
-	Fish fish1 = new Fish(Color.pink, 250, 250); //make a Fish constructor in Fish.java
-	Fish nemo = new Fish(Color.red, 100, 100);
-	int fish1X = getWidth() + 100;
-	int fish2X = getWidth() + 300;
+	Fish fish1 = new Fish(Color.pink, 250, 250, true, true); //make a Fish constructor in Fish.java
+	Fish nemo = new Fish(Color.red, 100, 100, true, true);
+
 
 	@Override
 	public void draw(Graphics2D g) {
@@ -55,24 +54,12 @@ public class Aquarium extends GFX {
 		//The new fishes
 		fish1.draw(g);
 		nemo.draw(g);
-			//shorter than:
-		DrawFish.facingLeft(g,  fish1.color, fish1.x, fish1.y); //draws the pink fish
-
-		// Draw the fish!
-		DrawFish.facingLeft(g, Color.yellow, fish1X, 200);
-		// Draw the confused fish!
-		DrawFish.facingRight(g, Color.green, fish2X, 300);
-
-		// What if we wanted this little fish to swim, too?
-		DrawFish.smallFacingLeft(g, Color.red, fish1X, 100);
 
 		// Draw our snail!
 		algorithm.draw(g);
 
 		// Move the fish!
-		fish1X -= 1;
-		fish2X -= 2;
-		
+
 
 	}
 
