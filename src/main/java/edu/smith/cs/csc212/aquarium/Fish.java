@@ -2,6 +2,14 @@ package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.Random;
+
+/**
+Parts of the code were from John Foley's P1 video from Moodle
+ * @author tseshaiah
+ * 
+ *
+ */
 
 //create a Fish class with three fish in it
 public class Fish {
@@ -9,54 +17,74 @@ public class Fish {
 	Color color;
 	// position of the fish
 	int x;
-	int y;
-	boolean facingLeft; 
-	boolean isLittle;
+	int y; 
+	// size of the fish
+	boolean isLittle; 
+	// direction of fish
+	boolean facingLeft;
+	// destination of fish
+	int destX;
+	int destY;
+
 	
-	// construct a fish at position with color
-	public Fish(Color c, int startX, int startY, boolean dir, boolean size) {
+	// fish constructor
+	public Fish(Color c) { 
 		this.color = c;
-		this.x = startX;
-		this.y = startY;
-		this.facingLeft = dir;
-		this.isLittle = size;
-		//this.facingLeft = true; //dir = direction
-		//this.isLittle = true;
+		Random rand = new Random(); 
+		this.x = rand.nextInt(Aquarium.WIDTH);
+		this.y = rand.nextInt(Aquarium.HEIGHT);
+		this.isLittle = rand.nextBoolean();
+		this.facingLeft = rand.nextBoolean();
+		
+		//debug destination of fish
+		// have all fish swim towards same destination
+		this.destX = 250;
+		this.destY = 250;
+		
 	}
 	
-	//true = facing left and small
-	//false = facing right and big
 	
 	public void draw(Graphics2D window) {
 		this.swim();
 		
-		if (this.facingLeft == true) {
-			DrawFish.facingRight(window, this.color, 
-					this.x, this.y);	//when i do facingLeft --> both have 2 
-		} 
-		// if facing Left --> draw it facing Right
-		else {
-			DrawFish.facingRight(window, this.color, 
+		// need to add isLeft code here:
+		if (this.isLittle) {
+			if (this.facingLeft) {
+				DrawFish.smallFacingLeft(window, this.color, 
 					this.x, this.y);
+			} else {
+				DrawFish.smallFacingRight(window, this.color, 
+						this.x, this.y); 
+			}
+		} else {
+			if (this.facingLeft) {
+				DrawFish.facingLeft(window, this.color, 
+					this.x, this.y);
+			} else {
+				DrawFish.facingRight(window, this.color, 
+						this.x, this.y);
+			}
 		}
-				
-		
-		DrawFish.facingRight(window, 
-				this.color, this.x, this.y);
-//		DrawFish.facingRight(window, 
-//				this.color, this.x, this.y);
-//		DrawFish.smallFacingLeft(window, 
-//				this.color, this.x, this.y);
-//		DrawFish.smallFacingRight(window, 
-//				this.color, this.x, this.y);//draws the pink fish
 	}
-	
 	
 	// animate our fish
 	public void swim() {
-		// this.y += 1;
-
+		
+		// about destX and destY
+		if (this.x < this.destX) {
+			this.x += 1;
+			facingLeft = false;
+		} else if (this.x > this.destX){
+			this.x -= 1;
+			facingLeft = true;
+		}
+		
+		//member variable 
+		
+		
 	}
-		
-		
 }
+
+//random destination; swimming towards destination
+//member variable: variable in the class, not specific to a function
+	// ex: x and y

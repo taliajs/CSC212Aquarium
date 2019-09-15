@@ -39,10 +39,12 @@ public class Aquarium extends GFX {
 		// Here we ask GFX to make our window of size WIDTH and HEIGHT.
 		// Don't change this here, edit the variables instead.
 		super(WIDTH, HEIGHT);
+		
 	}
 	
-	Fish fish1 = new Fish(Color.pink, 250, 250, true, true); //make a Fish constructor in Fish.java
-	Fish nemo = new Fish(Color.red, 100, 100, true, true);
+	//make a Fish constructor in Fish.java
+	Fish nemo = new Fish(Color.red); 
+	Fish fish1 = new Fish(Color.pink);
 
 
 	@Override
@@ -57,10 +59,7 @@ public class Aquarium extends GFX {
 
 		// Draw our snail!
 		algorithm.draw(g);
-
-		// Move the fish!
-
-
+		
 	}
 
 
