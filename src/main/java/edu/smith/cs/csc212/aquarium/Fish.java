@@ -25,7 +25,6 @@ public class Fish {
 	// destination of fish
 	int destX;
 	int destY;
-
 	
 	// fish constructor
 	public Fish(Color c) { 
