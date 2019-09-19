@@ -2,6 +2,7 @@ package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.Random;
 
 import me.jjfoley.gfx.GFX;
 
@@ -35,16 +36,35 @@ public class Aquarium extends GFX {
 	/**
 	 * This is a constructor, code that runs when we make a new Aquarium.
 	 */
+	
+	Fish[] fishes = new Fish[20];
+	
 	public Aquarium() {
 		// Here we ask GFX to make our window of size WIDTH and HEIGHT.
 		// Don't change this here, edit the variables instead.
 		super(WIDTH, HEIGHT);
+//		Random rand = new Random();
+//		for (int i = 0; i <this.fishes.length; i++) {
+//			Color rcolor = Color.getHSBColor (
+//					rand.nextFloat(), 0.8f, 0.8f);
+//			boolean isSmall = rand.nextBoolean();
+//			boolean isRight = rand.nextBoolean();
+//			int x = 50 + (i*90) % (WIDTH-100);
+//		    int y = 50 + (i*40) % (HEIGHT-100);
+//		    this.fishes[i] = new Fish(x, y, rcolor, isSmall, isRight);
+//		}
 		
 	}
-	
+
 	//make a Fish constructor in Fish.java
+
 	Fish nemo = new Fish(Color.red); 
 	Fish fish1 = new Fish(Color.pink);
+	
+	// create a loop that automatically creates new fishes?
+	
+	Bubble bubble = new Bubble();
+	
 
 
 	@Override
@@ -52,10 +72,12 @@ public class Aquarium extends GFX {
 		// Draw the "ocean" background.
 		g.setColor(Color.blue);
 		g.fillRect(0, 0, getWidth(), getHeight());
+		bubble.draw(g);
 		
 		//The new fishes
 		fish1.draw(g);
 		nemo.draw(g);
+
 
 		// Draw our snail!
 		algorithm.draw(g);
