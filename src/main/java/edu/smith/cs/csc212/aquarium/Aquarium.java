@@ -37,33 +37,31 @@ public class Aquarium extends GFX {
 	 * This is a constructor, code that runs when we make a new Aquarium.
 	 */
 	
-	Fish[] fishes = new Fish[20];
+	Fish[] fishes;
+	Bubble[] bubbles;
 	
 	public Aquarium() {
 		// Here we ask GFX to make our window of size WIDTH and HEIGHT.
 		// Don't change this here, edit the variables instead.
 		super(WIDTH, HEIGHT);
-//		Random rand = new Random();
-//		for (int i = 0; i <this.fishes.length; i++) {
-//			Color rcolor = Color.getHSBColor (
-//					rand.nextFloat(), 0.8f, 0.8f);
-//			boolean isSmall = rand.nextBoolean();
-//			boolean isRight = rand.nextBoolean();
-//			int x = 50 + (i*90) % (WIDTH-100);
-//		    int y = 50 + (i*40) % (HEIGHT-100);
-//		    this.fishes[i] = new Fish(x, y, rcolor, isSmall, isRight);
-//		}
+		Random rand = new Random();
+		fishes = new Fish[20];
 		
+		// create a loop that automatically creates new fishes
+		for (int i = 0; i < this.fishes.length; i++) {
+		    Color rcolor = Color.getHSBColor(
+		                         rand.nextFloat(), 0.8f, 0.8f);
+		    this.fishes[i] = new Fish (rcolor); 
+		    }
+		
+		//create a fixed array of 10 bubbles
+		bubbles = new Bubble[10];
+		for (int i = 0; i < this.bubbles.length; i++) {
+			this.bubbles[i] = new Bubble();
+		}
 	}
 
-	//make a Fish constructor in Fish.java
-
-	Fish nemo = new Fish(Color.red); 
-	Fish fish1 = new Fish(Color.pink);
 	
-	// create a loop that automatically creates new fishes?
-	
-	Bubble bubble = new Bubble();
 	
 
 
@@ -72,12 +70,16 @@ public class Aquarium extends GFX {
 		// Draw the "ocean" background.
 		g.setColor(Color.blue);
 		g.fillRect(0, 0, getWidth(), getHeight());
-		bubble.draw(g);
 		
-		//The new fishes
-		fish1.draw(g);
-		nemo.draw(g);
-
+		//loop that draws fishes
+		for (int i = 0; i < this.fishes.length; i++) {
+		    this.fishes[i].draw(g);
+		    }
+		
+		//loop that draws bubbles
+		for (int i = 0; i < this.bubbles.length; i++) {
+		    this.bubbles[i].draw(g);
+		    }
 
 		// Draw our snail!
 		algorithm.draw(g);
