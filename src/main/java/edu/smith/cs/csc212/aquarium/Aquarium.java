@@ -2,6 +2,7 @@ package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 import java.util.Random;
 
 import me.jjfoley.gfx.GFX;
@@ -39,6 +40,10 @@ public class Aquarium extends GFX {
 	
 	Fish[] fishes;
 	Bubble[] bubbles;
+	HungryFish[] hungryfish;
+	
+	Chest chest = new Chest();
+	Food seaweed = new Food();
 	
 	public Aquarium() {
 		// Here we ask GFX to make our window of size WIDTH and HEIGHT.
@@ -47,7 +52,7 @@ public class Aquarium extends GFX {
 		Random rand = new Random();
 		fishes = new Fish[20];
 		
-		// create a loop that automatically creates new fishes
+		//create a loop that automatically creates new fishes
 		for (int i = 0; i < this.fishes.length; i++) {
 		    Color rcolor = Color.getHSBColor(
 		                         rand.nextFloat(), 0.8f, 0.8f);
@@ -59,11 +64,18 @@ public class Aquarium extends GFX {
 		for (int i = 0; i < this.bubbles.length; i++) {
 			this.bubbles[i] = new Bubble();
 		}
+		
+		//create hungry fish
+		hungryfish = new HungryFish[3];
+		
+		for (int i = 0; i < this.hungryfish.length; i++) {
+		    Color rcolor = Color.getHSBColor(
+                    rand.nextFloat(), 0.8f, 0.8f);
+		    this.hungryfish[i] = new HungryFish (rcolor); 
+		    }
 	}
 
 	
-	
-
 
 	@Override
 	public void draw(Graphics2D g) {
@@ -80,10 +92,22 @@ public class Aquarium extends GFX {
 		for (int i = 0; i < this.bubbles.length; i++) {
 		    this.bubbles[i].draw(g);
 		    }
-
+		
+		//loop that draws the hungry fish
+		for (HungryFish h : this.hungryfish) {
+			h.draw(g);
+		}
+		
+		//Draw chest
+		chest.draw(g);
+		
+		//Draw food
+		seaweed.draw(g);
+		
+		
+	
 		// Draw our snail!
 		algorithm.draw(g);
-		
 	}
 
 

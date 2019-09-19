@@ -11,7 +11,7 @@ Parts of the code were from John Foley's P1 video from Moodle
  *
  */
 
-//create a Fish class with three fish in it
+//create a Fish class
 public class Fish {
 	// color of the fish
 	Color color;
@@ -37,11 +37,6 @@ public class Fish {
 		this.isLittle = rand.nextBoolean();
 		this.facingLeft = rand.nextBoolean();
 		
-		//debug destination of fish
-		// have all fish swim towards same destination
-//		this.destX = 250;
-//		this.destY = 250;
-		
 		//fish go to random destination
 		this.destX = rand.nextInt(Aquarium.WIDTH);
 		this.destY = rand.nextInt(Aquarium.HEIGHT);	
@@ -50,6 +45,7 @@ public class Fish {
 	
 	public void draw(Graphics2D window) {
 		this.swim();
+		this.ChooseNewDestination();
 		
 		if (this.isLittle) {
 			if (this.facingLeft) {
@@ -71,7 +67,7 @@ public class Fish {
 	}
 	
 	// animate our fish
-	public void swim() {
+	public void swim() { //swim() is a method of Fish
 		
 		// about destX and destY
 		if (this.x < this.destX) {
@@ -89,19 +85,14 @@ public class Fish {
 			facingLeft = true;
 		}
 		
-		
-		//member variable 
-		
+	}
+	
+	public void ChooseNewDestination() {
 		//close to destination, fish chooses another
 		if (Math.abs(this.x - this.destX) <=3 && Math.abs(this.y - this.destY) <=3) {
 			this.destX = this.rand.nextInt(Aquarium.WIDTH);
 			this.destY = this.rand.nextInt(Aquarium.HEIGHT);	
 			}
-	
-
+		
 	}
 }
-
-//random destination; swimming towards destination
-//member variable: variable in the class, not specific to a function
-	// ex: x and y
