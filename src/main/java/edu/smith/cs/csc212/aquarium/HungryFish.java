@@ -41,7 +41,7 @@ public class HungryFish {
 
 	public void draw(Graphics2D window) {
 		this.swim();
-		this.Hunger();
+		this.hunger();
 
 		if (this.isLittle) {
 			if (this.facingLeft) {
@@ -78,26 +78,30 @@ public class HungryFish {
 		}
 	}
 
-	public void Hunger() {
-		this.hunger += 1;
-		if (hunger == 250) {
-			this.destX = FOODAREA; 
-			this.destY = 30 + rand.nextInt(125); //go to food area
+	public void hunger() {
+		System.out.println("Hunger: " + this.hunger);
+		if (this.hunger == 250) { // THIS LINE, && this.hunger <300
+			this.destX = FOODAREA;
+			this.destY = 30 + rand.nextInt(125); // go to random destination in food area
 			this.color = Color.red;
-		} 
-//		else {
-//			this.destX = this.rand.nextInt(Aquarium.WIDTH);
-//			this.destY = this.rand.nextInt(Aquarium.HEIGHT);	
-//			this.color = Color.green;
-//		}
+			// this.hunger = 0;
+		}
+		
+		//else { // if hunger is normal, leave food area
+		//this.destX = rand.nextInt(Aquarium.WIDTH);
+		//this.destY = rand.nextInt(Aquarium.HEIGHT);
+		//this.color = Color.green;
+		//}
+
+		// else { if (this.hunger == 301){
+		// reset hunger
+		// this.hunger = 0;
+		// leave food area
+		// this.destX = rand.nextInt(Aquarium.WIDTH);
+		// this.destY = rand.nextInt(Aquarium.HEIGHT);
+
 	}
 
+
+
 }
-
-//take in location of food
-//int food x, int food y
-// check if fish is in food area
-// if yes, not hungry (change food meter color)
-// if no, hungry --> go to food area (random)
-
-//if hungry, food meter is red, not hungry = green
